@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "cheesecloth"
     gem.summary = %Q{Resource filtering for Rails}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Resource filtering for Rails, including named_scope chaining, additive behavior and view helpers.}
     gem.email = "jejacks0n@gmail.com"
     gem.homepage = "http://github.com/jejacks0n/cheesecloth"
     gem.authors = ["Jeremy Jackson"]
