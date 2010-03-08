@@ -1,0 +1,20 @@
+h1. Cheesecloth
+
+Resource filtering for Rails, including named_scope chaining, and view helpers.
+
+h2. Todo
+
+I'll be adding tests and documentation here as I use the gem more and hash out some more details that I may have overlooked.
+
+I want to add "additive" behavior, but haven't gotten to it just yet.  I think filters should work in a simple way, and an additive way.. I filter first_name with 'jeremy', and last_name with 'is a', each of those should be it's own filter that I can remove or not.  This is in the works, but isn't done.
+
+h2. Documentation
+
+RDoc documentation _should_ be automatically generated after each commit and made available on the "rdoc.info website":http://rdoc.info/projects/jejacks0n/cheesecloth.
+
+h2. Project Info
+
+Cheesecloth is hosted on Github: "http://github.com/jejacks0n/cheesecloth":http://github.com/jejacks0n/cheesecloth, and the gem is available on Gemcutter: "http://gemcutter.org/gems/cheesecloth":http://gemcutter.org/gems/cheesecloth
+
+
+Copyright (c) Jeremy Jackson, released under the MIT license.
