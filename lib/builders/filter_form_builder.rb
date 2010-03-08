@@ -11,7 +11,7 @@ module Cheesecloth
       @template.text_field_tag("filter[#{filter_table_name}][terms]", filter_params(:terms), options)
     end
 
-    def methods(options = {})
+    def filter_methods(options = {})
       @template.select_tag("filter[#{filter_table_name}][fields]", [['Any', 'any'], ['All', 'all'], ['Exact Phrase', 'exact'], ['All in Order', 'all_in_order']], options)
     end
 
