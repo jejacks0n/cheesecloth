@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'builders/simple_builder'
+require 'builders/filter_form_builder'
 
 # to test {:filter => {:users => .. }
 # {:method => 'any', :terms => ['first', 'second'], :fields => 'all'}
@@ -29,20 +29,18 @@ module Cheesecloth
   #
   module FilterFormHelper
 
-    @@builder = ::Cheesecloth::SimpleBuilder
+    @@builder = ::Cheesecloth::FilterFormBuilder
     mattr_accessor :builder
 
-    def filter_form_for(name, *args, &proc)
+    def filter_form_for(name, options = {}, &proc)
       raise ArgumentError, "Missing block" unless block_given?
-
-      options = args.extract_options!
 
       options[:html] ||= {}
       options[:html][:class] = add_class(options[:html][:class], 'filter-form')
-      options[:html][:id] ||= name.to_s.underscore
+      options[:html][:id] ||= "#{name.to_s.underscore}_filter"
+      options[:html][:method] = :get
 
-      builder = options.delete(:builder) || SimpleBuilder
-      builder.new(@template, name, options, &proc)
+      form_for(name, {:builder => options.delete(:builder) || @@builder}.merge(options), &proc)
     end
 
     def add_class(classnames, classname)
@@ -56,7 +54,7 @@ module Cheesecloth
 
     FILTER_METHODS = [:any, :all, :all_in_order, :exact]
 
-    # 
+    #
     #
     #
     # To get more details on the configuration options, check the FilterableConfiguration class that's below.
@@ -105,7 +103,7 @@ module Cheesecloth
         @target.filterable_fields - args
       end
 
-      # Provide named scopes that can be chained together to provide additional filtering conditions.  You can then 
+      # Provide named scopes that can be chained together to provide additional filtering conditions.  You can then
       # provide an interface that gives options for a given scope.  For example, using +with_role+ named_scope for Users
       # you may want to give a select menu or checkboxes of the different roles.
       #
